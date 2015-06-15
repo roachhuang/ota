@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+
+<head>
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+
+    <!-- inject: css -->
+    <link rel="stylesheet" href="./mycss.css" />
+    <!-- endinject -->
+</head>
+<header class="container">
+    <nav class ='navbar navbar-inverse navbar-fix' role="navigation">
+        <div class="navbar-header">
+            <div id="logo">
+                <a class='pull-left' href='#'>
+                    <img class='img-responsive' src='slide9.jpg' />
+                </a>
+                <a class="pull-left" href="#"><h3>MK Security</h3></a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<body ng-controller='otaController as otaCtrl'>
+<section>
+    <div class='container'>
+        <div ng-include src="'horizontalForm.html'"></div>
+        <br/>
+    </div>
+</section>
+<article class="container">
+    <p class="'text-info">Unsaved record(s): <span class="'badge">{{record}}</span></p>
+</article>
+<footer class="container">
+    <hr />
+    <div class="row">
+        <h4 class="lead">&copy; 2015 - Roach Huang</h4>
+        <p>Contact information: <a href="mailto:mark.huang@ca-sec.com">mark.huang@ca-sec.com</a>.</p>
+    </div>
+    <!-- <p>C:\OTC\ESTOCK\Download\otardqry</p> -->
+</footer>
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<!-- endbower -->
+
+<!-- inject:js -->
+
+<script src="/script.js"></script>
+
+<!-- endinject -->
+</body>
+</html>

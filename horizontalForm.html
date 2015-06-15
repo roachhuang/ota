@@ -1,0 +1,78 @@
+<div class ='row center-block'>
+    <form class = 'form-horizontal' ng-submit='addOta()'>
+        <div class='form-group'>
+            <label for='Trade Day' class='control-lable col-md-4'>Trade Day (2 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='Trade Day - DD' pattern='[0-9]{2}' required ng-model='ota[0]' class='form-control' autofocus/>
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='Account id' class='control-lable col-md-4'>Account# (7 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='OTA Act' required ng-model='ota[2]' class='form-control' />
+            </div>
+        </div>
+
+        <div class='form-group'>
+            <label for='Stock id' class='control-lable col-md-4'>Stock Code (4 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='Stock Id' pattern='[0-9]{4}' required ng-model='ota[3]' class='form-control' />
+            </div>
+        </div>
+
+        <div class='form-group'>
+            <label for='Order type' class='control-lable col-md-4'>Order Type (B or S)</label>
+            <div class ='col-md-8'>
+                <input type='text' list='OrderType' placeholder='Order Type' ng-required ng-model='ota[4]' class='form-control' />
+            </div>
+        </div>
+        <datalist id='OrderType'>
+            <option value='B'>
+            <option value='S'>
+        </datalist>
+        <div class='form-group'>
+            <label for='trade Seq' class='control-lable col-md-4'>Matching seq no. before allocation (Max. 7 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='Trade Sequence' pattern='[0-9]{4,}' required ng-model='ota[5]' class='form-control' />
+            </div>
+        </div>
+
+        <div class='form-group'>
+            <label for='Order no' class='control-lable col-md-4'>Order No. (Max. 7 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='Order Sequence' pattern='[0-9]{5,}' required ng-model='ota[6]' class='form-control' />
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='Intro broker' class='control-lable col-md-4'>Intro Broker (4 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='Intro Broker' pattern='[0-T]{4}' required ng-model='ota[7]' class='form-control' />
+            </div>
+        </div>
+
+        <div class='form-group'>
+            <label for='alloc act' class='control-lable col-md-4'>Account Id after allocation (7 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='Alloc Invest Act' pattern='[0-9]{7}' required ng-model='ota[8]' class='form-control' />
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='Alloc Trade share' class='control-lable col-md-4'>Allocated Trade Shares (Max. 8 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='Alloc Trade Shares' pattern='[0-9]{4,}' required ng-model='ota[9]' class='form-control' />
+            </div>
+        </div>
+        <div class='form-group'>
+            <label for='alloc Trade amt' class='control-lable col-md-4'>Amt after allocation (Max. 12 digits)</label>
+            <div class ='col-md-8'>
+                <input type='text' placeholder='Alloc Trade Amt' pattern='[0-9]{5,}' required ng-model='ota[10]' class='form-control' />
+            </div>
+        </div>
+
+        <div class='btn-group'>
+            <input type='submit' value='Add' class='btn btn-primary' active />
+            <button type='button' class='btn btn-warning' ng-click='cancelOta()'>Cancel</button>
+            <button type='button' class='btn btn-success' ng-click='saveOta()'>Save</button>
+        </div>
+    </form>
+</div>
