@@ -1,9 +1,19 @@
 <div class="well">
-    <h2>OTA File Generator</h2>
+    <h2>Emerging Mkt - OTA File Generator</h2>
+<!--
+    <form class='form-group' ng-submit="import()">
+        <input class='form-control' type="file" id='fileInput' accept=".csv">
+        <input class='form-control' type="submit">
+    </form>
+-->
+
     <div class="form-group">
-        <label class="btn btn-danger"><input type='file', id='fileInput'  class="form-control-sm"/></label>
+        <label class="btn btn-danger"><input type='file' accept=".csv" id='fileInput'  class="form-control-sm"/></label>
     </div>
     <div class="form-group">
         <button type='button' class='form-control-sm btn btn-primary' ng-click="import()">Convert & Save</button>
     </div>
 </div>
+<p class="text-danger">This app is to convert a csv file into the OTA format for upload, so you need to save your
+    Excel file into csv first.</p>
+<p class="text-info">The output file, named 1.txt, will be saved on your Download folder.</p>
