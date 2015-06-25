@@ -26,18 +26,26 @@
 <body ng-controller='otaController as otaCtrl'>
 <section>
     <div class='container'>
+        <!--
         <div ng-include src="'horizontalForm.html'"></div>
-        <br/>
+        -->
+        <div ng-include src="'readLocalFile.html'"></div>
+        <!-- <hr />
+        <div ng-include src="'otaTable.html'"></div>
+        -->
     </div>
 </section>
+
+<!--
 <article class="container">
     <p class="'text-info">Unsaved record(s): <span class="'badge">{{record}}</span></p>
 </article>
+-->
+
 <footer class="container">
-    <hr />
     <div class="row">
         <h4 class="lead">&copy; 2015 - Roach Huang</h4>
-        <p>Contact information: <a href="mailto:mark.huang@ca-sec.com">mark.huang@ca-sec.com</a>.</p>
+        <h5>Contact information: <a href="mailto:mark.huang@ca-sec.com">mark.huang@ca-sec.com</a>.</h5>
     </div>
     <!-- <p>C:\OTC\ESTOCK\Download\otardqry</p> -->
 </footer>
@@ -49,7 +57,7 @@
 
 <!-- inject:js -->
 
-<script src="/script.js"></script>
+<script src="./import.module.js"></script>
 
 <!-- endinject -->
 </body>

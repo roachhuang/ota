@@ -1,0 +1,72 @@
+/**
+ * Created by roach on 2015/6/24.
+ */
+'use strict'
+angular.module('app', [])
+    .controller('otaController', function($scope) {
+        var vm = $scope;
+        vm.destData = [];
+        vm.import = function() {
+            var srcData;
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'UTF-8');
+            reader.onload = function (e) {
+            srcData = e.target.result.split(/\r\n|,/g); // crlf and comma
+            vm.destData = convert(srcData);
+            saveOta(vm.destData);
+            }
+        };
+        var saveOta = function(data) {
+            // Blob eats array obj, not string
+            var oMyBlob = new Blob(data, {
+                type: 'text/plain'
+            });
+            //var oMyBlob = new Blob($scope.otas, {type: 'application/octet-stream'});
+            console.log(oMyBlob.size);
+            console.log(oMyBlob.type);
+
+            //contentType = 'application/octet-stream';
+            var a = document.createElement('a');
+            a.href = window.URL.createObjectURL(oMyBlob);
+            a.download = '1.txt';
+            a.click();
+            // vm.ota.splice(0, vm.ota.length);
+            //vm.otas.splice(0, vm.otas.length);
+            //vm.record = 0;
+        };
+
+        var convert = function(data) {
+            var i;
+            var j = 0;
+            var destArray =[];
+            for (i=0; i < (data.length-1)/11; i++) {
+                destArray.push(pad(data[j], 8)); // remove comma frm array
+                destArray.push(pad(data[j+1], 4));
+                destArray.push(pad(data[j+2], 7));
+                destArray.push(pad(data[j+3], 6));
+                destArray.push(pad(data[j+4], 1));
+                destArray.push(pad(data[j+5], 7));
+                destArray.push(pad(data[j+6], 7));
+                destArray.push(pad(data[j+7], 4));
+                destArray.push(pad(data[j+8], 7));
+                destArray.push(pad(data[j+9], 8));
+                destArray.push(pad(data[j+10], 14));
+                destArray.push(pad(' ', 25, ' '));
+                destArray.push('\r\n');
+                j = i*11;
+            }
+            return destArray;
+        }
+        // left padding
+        function pad(num, size, f) {
+            var filler =  f || '0';
+            var s = num +"";
+            while (s.length < size) {
+                s = filler + s;
+            }
+            return s;
+        }
+});
