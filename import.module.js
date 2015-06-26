@@ -28,11 +28,17 @@ angular.module('app', [])
             console.log(oMyBlob.size);
             console.log(oMyBlob.type);
 
+            saveAs(oMyBlob, "ota.txt");
+            //window.navigator.msSaveBlob(oMyBlob, 'ota.txt'); // The user only has the option of clicking the Save button.
+
+
             //contentType = 'application/octet-stream';
+            /*
             var a = document.createElement('a');
             a.href = window.URL.createObjectURL(oMyBlob);
             a.download = '1.txt';
             a.click();
+            */
             // vm.ota.splice(0, vm.ota.length);
             //vm.otas.splice(0, vm.otas.length);
             //vm.record = 0;
