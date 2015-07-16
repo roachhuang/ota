@@ -9,9 +9,9 @@
             vm.otas = [];
             vm.record = 0;
             var d = new Date();
-            var y = d.getFullYear().toString();
-            var m = ("0" + (d.getMonth() + 1)).slice(-2);
-
+            var yyyy = d.getFullYear().toString();
+            var mm = ("0" + (d.getMonth() + 1)).slice(-2);
+            var dd = ("0" + (d.getDay() + 1)).slice(-2);
             $scope.cancelOta = function() {
                 vm.ota.splice(0, vm.ota.length);
             };

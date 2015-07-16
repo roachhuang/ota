@@ -6,6 +6,14 @@ angular.module('app', [])
     .controller('otaController', function($scope) {
         var vm = $scope;
         vm.destData = [];
+        var d = new Date();
+        var yyyy = d.getFullYear().toString();
+        var mm = ("0" + (d.getMonth() + 1)).slice(-2);
+        var dd = ("0" + (d.getDay() + 1)).slice(-2);
+        var tradDate = yyyy + mm + dd;
+        var brokerId ='1380';
+        var otaAcc = '9955558';
+
         vm.import = function() {
             var srcData;
             var fileInput = document.getElementById('fileInput');
@@ -14,7 +22,7 @@ angular.module('app', [])
             var reader = new FileReader();
             reader.readAsText(file, 'UTF-8');
             reader.onload = function (e) {
-            srcData = e.target.result.split(/\r\n|,/g); // crlf and comma
+            srcData = e.target.result.split(/\r\n|,/g); // crlf and comma, a "" is at the end of the file, so length is +1.
             vm.destData = convert(srcData);
             saveOta(vm.destData);
             }
@@ -47,11 +55,12 @@ angular.module('app', [])
         var convert = function(data) {
             var i;
             var j = 0;
-            var destArray =[];
-            for (i=0; i < (data.length-1)/11; i++) {
-                destArray.push(pad(data[j], 8)); // remove comma frm array
-                destArray.push(pad(data[j+1], 4));
-                destArray.push(pad(data[j+2], 7));
+            var destArray = [];
+            // dealer manually input only 7 columns
+            for (i=0; i < (data.length-1)/7; i++) {
+                destArray.push(pad(tradeDate, 8)); // remove comma frm array
+                destArray.push(pad(brokerId, 4));
+                destArray.push(pad(otaAcc, 7));
                 destArray.push(pad(data[j+3], 6));
                 destArray.push(pad(data[j+4], 1));
                 destArray.push(pad(data[j+5], 7));
