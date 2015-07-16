@@ -56,8 +56,8 @@ angular.module('app', [])
             var i;
             var j = 0;
             var destArray = [];
-            // dealer manually input only 7 columns
-            for (i=0; i < (data.length-1)/7; i++) {
+            // dealer manually input only 8 columns
+            for (i=0; i < (data.length-1)/8; i++) {
                 destArray.push(pad(tradeDate, 8)); // remove comma frm array
                 destArray.push(pad(brokerId, 4));
                 destArray.push(pad(otaAcc, 7));
