@@ -68,7 +68,7 @@ angular.module('app', [])
                 destArray.push(pad(data[j+4], 4));
                 destArray.push(pad(data[j+5], 7));
                 destArray.push(pad(data[j+6], 8));
-                if (data[j+7].includes('.')) {
+                if (data[j+7].indexOf('.') != -1) {
                     data[j+7].split(/./g);
                 } else {
                     data[j+7] =  data[j+7] +'00';
