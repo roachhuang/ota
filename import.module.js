@@ -9,7 +9,7 @@ angular.module('app', [])
         var d = new Date();
         var yyyy = d.getFullYear().toString();
         var mm = ("0" + (d.getMonth() + 1)).slice(-2);
-        var dd = ("0" + (d.getDay() + 1)).slice(-2);
+        var dd = ("0" + (d.getDate() + 1)).slice(-2);
         var tradeDate = yyyy + mm + dd;
         var brokerId ='1380';
         var otaAcc = '9955558';
@@ -22,7 +22,7 @@ angular.module('app', [])
             var reader = new FileReader();
             reader.readAsText(file, 'UTF-8');
             reader.onload = function (e) {
-            srcData = e.target.result.split(/\r\n|,/g); // crlf and comma, a "" is at the end of the file, so length is +1.
+            srcData = e.target.result.split(/\r\n|,/g); // crlf and comma. a "" is at the end of the file, so length is +1.
             vm.destData = convert(srcData);
             saveOta(vm.destData);
             }
@@ -61,13 +61,19 @@ angular.module('app', [])
                 destArray.push(pad(tradeDate, 8)); // remove comma frm array
                 destArray.push(pad(brokerId, 4));
                 destArray.push(pad(otaAcc, 7));
-                destArray.push(pad(data[j+0], 6));
+                destArray.push(pad(data[j+0], 6, ' '));
                 destArray.push(pad(data[j+1], 1));
                 destArray.push(pad(data[j+2], 7));
                 destArray.push(pad(data[j+3], 7));
                 destArray.push(pad(data[j+4], 4));
                 destArray.push(pad(data[j+5], 7));
                 destArray.push(pad(data[j+6], 8));
+                if (data[j+7].includes('.')) {
+                    data[j+7].split(/./g);
+                } else {
+                    data[j+7] =  data[j+7] +'00';
+                }
+
                 destArray.push(pad(data[j+7], 14));
                 destArray.push(pad(' ', 25, ' '));
                 destArray.push('\r\n');
