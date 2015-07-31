@@ -9,7 +9,7 @@ angular.module('app', [])
         var d = new Date();
         var yyyy = d.getFullYear().toString();
         var mm = ("0" + (d.getMonth() + 1)).slice(-2);
-        var dd = ("0" + (d.getDate() + 1)).slice(-2);
+        var dd = ("0" + (d.getDate())).slice(-2);
         var tradeDate = yyyy + mm + dd;
         var brokerId ='1380';
         var otaAcc = '9955558';
