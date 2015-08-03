@@ -61,7 +61,7 @@ angular.module('app', [])
                 destArray.push(pad(tradeDate, 8)); // remove comma frm array
                 destArray.push(pad(brokerId, 4));
                 destArray.push(pad(otaAcc, 7));
-                destArray.push(pad(data[j+0], 6, '0'));
+                destArray.push(padding_right(data[j+0], 6, ' '));   // stock code
                 destArray.push(pad(data[j+1], 1));
                 destArray.push(pad(data[j+2], 7));
                 destArray.push(pad(data[j+3], 7));
@@ -88,6 +88,20 @@ angular.module('app', [])
             while (s.length < size) {
                 s = filler + s;
             }
+            return s;
+        }
+
+        // right padding s with c to a total of n chars
+        function padding_right(s, c, n) {
+            if (! s || ! c || s.length >= n) {
+                return s;
+            }
+
+            var max = (n - s.length)/c.length;
+            for (var i = 0; i < max; i++) {
+                s += c;
+            }
+
             return s;
         }
 });
