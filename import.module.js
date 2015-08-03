@@ -61,14 +61,14 @@ angular.module('app', [])
                 destArray.push(pad(tradeDate, 8)); // remove comma frm array
                 destArray.push(pad(brokerId, 4));
                 destArray.push(pad(otaAcc, 7));
-                destArray.push(padding_right(data[j+0], ' ', 6));   // stock code
-                destArray.push(pad(data[j+1], 1));
-                destArray.push(pad(data[j+2], 7));
-                destArray.push(pad(data[j+3], 7));
-                destArray.push(pad(data[j+4], 4));
-                destArray.push(pad(data[j+5], 7));
-                destArray.push(pad(data[j+6], 8));
-                if (data[j+7].indexOf('.') != -1) {
+                destArray.push(padding_right(data[j+0], 6, " "));   // stock code
+                destArray.push(pad(data[j+1], 1));  // B/S
+                destArray.push(pad(data[j+2], 7));  // trade s/n before allocation
+                destArray.push(pad(data[j+3], 7));  // ord no.
+                destArray.push(pad(data[j+4], 4));  // Intro Broker
+                destArray.push(pad(data[j+5], 7));  // Alloc Invest Acct
+                destArray.push(pad(data[j+6], 8));  // Alloc Trade Shares
+                if (data[j+7].indexOf('.') != -1) { // Alloc Trade Amt
                     data[j+7].split(/./g);
                 } else {
                     data[j+7] =  data[j+7] +'00';
@@ -92,14 +92,14 @@ angular.module('app', [])
         }
 
         // right padding s with c to a total of n chars
-        function padding_right(s, c, n) {
-            if (! s || ! c || s.length >= n) {
+        function padding_right(s, size, f) {
+            if (! s || ! f || s.length >= size) {
                 return s;
             }
 
-            var max = (n - s.length)/c.length;
+            var max = (size - s.length)/f.length;
             for (var i = 0; i < max; i++) {
-                s += c;
+                s += f;
             }
 
             return s;
