@@ -61,7 +61,7 @@ angular.module('app', [])
                 destArray.push(pad(tradeDate, 8)); // remove comma frm array
                 destArray.push(pad(brokerId, 4));
                 destArray.push(pad(otaAcc, 7));
-                destArray.push(pad(data[j+0], 6, ' '));
+                destArray.push(pad(data[j+0], 6, '0'));
                 destArray.push(pad(data[j+1], 1));
                 destArray.push(pad(data[j+2], 7));
                 destArray.push(pad(data[j+3], 7));
