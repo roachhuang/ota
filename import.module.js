@@ -77,7 +77,7 @@ angular.module('app', [])
                 destArray.push(pad(data[j+7], 14));
                 destArray.push(pad(' ', 25, ' '));
                 destArray.push('\r\n');
-                j = i*8;
+                j = j+8;
             }
             return destArray;
         }
