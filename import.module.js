@@ -36,7 +36,7 @@ angular.module('app', [])
             console.log(oMyBlob.size);
             console.log(oMyBlob.type);
 
-            saveAs(oMyBlob, "ota.txt");
+            saveAs(oMyBlob, "c:\otc\estock\ota_upload\ota.txt");
             //window.navigator.msSaveBlob(oMyBlob, 'ota.txt'); // The user only has the option of clicking the Save button.
 
 
@@ -63,8 +63,8 @@ angular.module('app', [])
                 destArray.push(pad(otaAcc, 7));
                 destArray.push(padding_right(data[j+0], 6, " "));   // stock code
                 destArray.push(pad(data[j+1], 1));  // B/S
-                destArray.push(pad(data[j+2], 7));  // trade s/n before allocation
-                destArray.push(pad(data[j+3], 7));  // ord no.
+                destArray.push(pad(data[j+2], 7));  // Trade s/n before allocation
+                destArray.push(pad(data[j+3], 7));  // Ord no.
                 destArray.push(pad(data[j+4], 4));  // Intro Broker
                 destArray.push(pad(data[j+5], 7));  // Alloc Invest Acct
                 destArray.push(pad(data[j+6], 8));  // Alloc Trade Shares
@@ -77,7 +77,7 @@ angular.module('app', [])
                 destArray.push(pad(data[j+7], 14));
                 destArray.push(pad(' ', 25, ' '));
                 destArray.push('\r\n');
-                j = j+8;
+                j = j+8;    // no. of colum user manually input.
             }
             return destArray;
         }
