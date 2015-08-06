@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html ng-app='app'>
-
+<html lang='zh-tw' ng-app='app'>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <head>
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -20,19 +20,17 @@
                 <a class="pull-left" href="#"><h3>MK Security</h3></a>
             </div>
         </div>
+        <h1 class="btn-primary">File conversion for Emerging Mkt OTA</h1>
     </nav>
 </header>
-
 <body ng-controller='otaController as otaCtrl'>
+
 <section>
     <div class='container'>
-        <!--
-        <div ng-include src="'horizontalForm.html'"></div>
-        -->
         <div ng-include src="'readLocalFile.html'"></div>
-        <!-- <hr />
-        <div ng-include src="'otaTable.html'"></div>
-        -->
+        <hr />
+        <div ng-include src="'otaOrdQry.html'"></div>
+
     </div>
 </section>
 

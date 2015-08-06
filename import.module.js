@@ -5,7 +5,7 @@
 angular.module('app', [])
     .controller('otaController', function($scope) {
         var vm = $scope;
-        vm.destData = [];
+        //vm.destData = [];
         var d = new Date();
         var yyyy = d.getFullYear().toString();
         var mm = ("0" + (d.getMonth() + 1)).slice(-2);
@@ -16,6 +16,7 @@ angular.module('app', [])
 
         vm.import = function() {
             var srcData;
+            var destData = [];
             var fileInput = document.getElementById('fileInput');
             var file = fileInput.files[0];
 
@@ -23,10 +24,26 @@ angular.module('app', [])
             reader.readAsText(file, 'UTF-8');
             reader.onload = function (e) {
             srcData = e.target.result.split(/\r\n|,/g); // crlf and comma. a "" is at the end of the file, so length is +1.
-            vm.destData = convert(srcData);
-            saveOta(vm.destData);
+            destData = convert(srcData);
+            saveOta(destData);
             }
         };
+
+        vm.importOrdDetails = function() {
+            var srcData;
+            var destData = [];
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+
+            var reader = new FileReader();
+            reader.readAsText(file, 'UTF-8');
+            reader.onload = function (e) {
+                srcData = e.target.result.split(/\r\n|,/g); // crlf and comma. a "" is at the end of the file, so length is +1.
+                destData = convertOrdDetails(srcData);
+                saveOta(destData);
+            }
+        }
+
         var saveOta = function(data) {
             // Blob eats array obj, not string
             var oMyBlob = new Blob(data, {
@@ -36,7 +53,7 @@ angular.module('app', [])
             console.log(oMyBlob.size);
             console.log(oMyBlob.type);
 
-            saveAs(oMyBlob, "c:\otc\estock\ota_upload\ota.txt");
+            saveAs(oMyBlob, "ota.txt"); // there is no way to specify a path due to security concern.
             //window.navigator.msSaveBlob(oMyBlob, 'ota.txt'); // The user only has the option of clicking the Save button.
 
 
@@ -51,7 +68,35 @@ angular.module('app', [])
             //vm.otas.splice(0, vm.otas.length);
             //vm.record = 0;
         };
+        var convertOrdDetails = function(data) {
+            var i;
+            var j = 0;
+            var destArray = [];
+            // dealer manually input only 8 columns
+            for (i=0; i < (data.length-1)/8; i++) {
+                destArray.push(pad(tradeDate, 8)); // remove comma frm array
+                destArray.push(pad(brokerId, 4));
+                destArray.push(pad(otaAcc, 7));
+                destArray.push(padding_right(data[j+0], 6, " "));   // stock code
+                destArray.push(pad(data[j+1], 1));  // B/S
+                destArray.push(pad(data[j+2], 7));  // Trade s/n before allocation
+                destArray.push(pad(data[j+3], 7));  // Ord no.
+                destArray.push(pad(data[j+4], 4));  // Intro Broker
+                destArray.push(pad(data[j+5], 7));  // Alloc Invest Acct
+                destArray.push(pad(data[j+6], 8));  // Alloc Trade Shares
+                if (data[j+7].indexOf('.') != -1) { // Alloc Trade Amt
+                    data[j+7].split(/./g);
+                } else {
+                    data[j+7] =  data[j+7] +'00';
+                }
 
+                destArray.push(pad(data[j+7], 14));
+                destArray.push(pad(' ', 25, ' '));
+                destArray.push('\r\n');
+                j = j+8;    // no. of colum user manually input.
+            }
+            return destArray;
+        }
         var convert = function(data) {
             var i;
             var j = 0;
